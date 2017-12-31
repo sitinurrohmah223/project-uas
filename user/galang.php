@@ -172,7 +172,7 @@ if(isset($_POST["galang"])){
       <label for="btn" class="control-label col-sm-3"></label>
       <div class="col-sm-8">
         <div class="col-sm-4">
-        <input type="submit" id="galang" name="galang" class="btn btn-dark btn-block" value="Galang Sekarang" />
+        <input type="submit" id="galang" name="galang" class="btn btn-info btn-block" value="Galang Sekarang" />
         </div>
         <div class="col-sm-4">
         <input type="reset" id="reset" class="btn btn-danger btn-block" value="Batal" />
