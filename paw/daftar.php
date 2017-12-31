@@ -1,9 +1,9 @@
 <?php
 @session_start();
-include "/../inc/koneksi.php";
+include "inc/koneksi.php";
 
 if(isset($_POST["register"])){
-  $query=mysql_query("insert into tb_user values('','$_POST[username]','$_POST[password]','$_POST[nama_lengkap]','$_POST[jenis_kelamin]','$_POST[no_telepon]','$_POST[email]','$_POST[alamat]')") or die(mysql_error());
+  $query=mysql_query("insert into tb_user values('','$_POST[username]','md5($_POST[password])','$_POST[nama_lengkap]','$_POST[jenis_kelamin]','$_POST[no_telepon]','$_POST[email]','$_POST[alamat]')") or die(mysql_error());
   if($query){
     ?> <script type="text/javascript">alert("Selamat datang orang baik, Silahkan Login");</script> <?php
     //header("location: login.php");
@@ -29,9 +29,13 @@ if(isset($_POST["register"])){
       color: #777;
   }
     footer {
+      margin-bottom: 20px;
+      margin-top: 20px;
       background-color: #FFB6C1;
       color: #B0C4DE;
-      padding: 32px;
+      padding: 20px;
+       border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
   }
   footer a {
       color: #800000;
@@ -50,7 +54,7 @@ if(isset($_POST["register"])){
       <a class="navbar-brand" href="index.php">KitaMampu</a>
     </div>
     <ul class="nav navbar-nav">
-      <li><a href="index.php">HOME</a></li>
+      <li><a href="index.php">H O M E</a></li>
       <li><a href="galang.php">GALANG DANA</a></li>
       <li><a href="donasi.php">DONASI</a></li>
       
@@ -175,6 +179,10 @@ textarea{
       </form>
       </div>
       </div>
+      <footer class="text-center">
+  
+  <p><a href="https://www.w3schools.com" data-toggle="tooltip" title="Visit w3schools">Copyright 2017</a></p> 
+</footer>
       </body>
       </div>
       </body>

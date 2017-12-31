@@ -1,14 +1,9 @@
 <?php
 @session_start();
-if(!isset($_SESSION['user'])){
-  header("location: login.php");
-}else if($_SESSION['user'] != 'user'){
-  header("location: login.php");
-}
-
 include "../inc/koneksi.php";
-
-if(isset($_POST["galang"])){
+$id=0;
+if(isset($_GET['id'])) $id=$_GET['id'];
+if(isset($_POST["konfirmasi"])){
 
       $ekstensi_diperbolehkan = array('png','jpg');
       $nama = $_FILES['file']['name'];
@@ -16,14 +11,18 @@ if(isset($_POST["galang"])){
       $ekstensi = strtolower(end($x));
       $ukuran = $_FILES['file']['size'];
       $file_tmp = $_FILES['file']['tmp_name'];
+      $id_donasi=$_POST['id_donasi'];
 
       if(in_array($ekstensi, $ekstensi_diperbolehkan) === true){
         if($ukuran < 1044070){      
           move_uploaded_file($file_tmp, '../images/'.$nama);
-          $query=mysql_query("insert into tb_galang values('','$_POST[judul]','$_POST[deskripsi]','$_POST[cerita]','$_POST[kategori]','$_POST[lokasi]','$_POST[target]','$_POST[deadline]','$nama','$_SESSION[id]')") or die(mysql_error());
-          
+          $query=mysql_query("insert into tb_konfirmasi values('','$_POST[jumlah]','$nama','$id_donasi')") or die(mysql_error());
+
+          $query2=mysql_query("update tb_donasi set status='success' where id_donasi='".$id_donasi."'") or die(mysql_error());
+      
           if($query){
-           ?> <script type="text/javascript">alert("Campaign anda akan di proses");</script> <?php
+           ?> <script type="text/javascript">alert("Konfirmasi anda akan di proses");</script> <?php
+           $update=mysql_query($query2);
           }else{
             echo 'GAGAL';
           }
@@ -92,98 +91,97 @@ if(isset($_POST["galang"])){
   </div>
 </nav>
 
-<div class="page-header"><h3 align="center">Tambah Galang</h3>
-      </div>
-      <form class="form-horizontal" action="galang.php" method="POST" role="form" enctype="multipart/form-data">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+body{
+  font-family:arial;
+  font-size: 14px;
+  background-color: #fff;
+}
 
+#utama{
+  width:800px;
+  margin: 0 auto;
+  margin-top: 12%;
+  background-color: #fff;
+}
 
-      <div class="form-group">
-        <label for="judul" class="control-label col-sm-3">Judul</label>
-        <div class="col-sm-8">
-          <input type="text" name="judul" id="judul" class="form-control" placeholder="Masukan Judul Campaign">
-        </div>  
-      </div>
+#judul{
+  padding: 15px;
+  text-align: center;
+  color: #fff;
+  font-size: 20px;
+  background-color: #339966;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+  border-bottom: 3px solid #336666;
+}
 
-      <div class="form-group">
-        <label for="deskripsi" class="control-label col-sm-3">Deskripsi</label>
-        <div class="col-sm-8">
-          <textarea class="form-control" rows="3" name="deskripsi" id="deskripsi" placeholder="Masukan Deskripsi Campaign
-          "></textarea>
-        </div>  
-      </div>
+#inputan{
+  background-color: #ccc;
+  padding: 20px;
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
 
-      <div class="form-group">
-        <label for="cerita" class="control-label col-sm-3">Cerita</label>
-        <div class="col-sm-8">
-          <textarea class="form-control" rows="3" name="cerita" id="cerita" placeholder="Masukan Cerita"></textarea>
-        </div>  
-      </div>
+input,select,textarea{
+  padding: 10px;
+  border: 0;
+  width: 750px;
+}
+textarea{
+  font-family: arial;
+  font-size: 13px;
+}
+.lg{
+  width: 240px;
+}
 
+.btn{
+  background-color: #339966;
+  border-radius: 10px;
+  color: #fff;
+}
 
-      <div class="form-group">
-        <label for="kategori" class="control-label col-sm-3">Kategori</label>
-        <div class="col-sm-8">
-          <select class="form-control" name="kategori" id="kategori">
-            <option value="">--Pilih Kategori--</option>
-            <option value="Bencana Alam">Bencana Alam</option>
-            <option value="Anak Yatim">Anak Yatim</option>
-            <option value="Sosial">Sosial</option>
-          </select>
-        </div>  
-      </div>
+.btn:hover{
+  background-color: #336666;
+  cursor: pointer;
+}
+.btn-right{
+  padding: 10px;
+  text-decoration: none;
+  border-radius: 3px;
+  color: #fff;
+}
 
-      <div class="form-group">
-        <label for="lokasi" class="control-label col-sm-3">Lokasi</label>
-        <div class="col-sm-8">
-          <select class="form-control" name="lokasi" id="lokasi">
-            <option value="">--Pilih Lokasi--</option>
-            <option value="aceh">Aceh</option>
-            <option value="jakarta">Jakarta</option>
-            <option value="bandung">Bandung</option>
-            <option value="medan">Medan</option>
-          </select>
-        </div>  
-      </div>
-
-      <div class="form-group">
-        <label for="target" class="control-label col-sm-3">Target</label>
-        <div class="col-sm-8">
-          <input type="text" name="target" id="target" class="form-control" placeholder="Masukan Target Dana yang Dibutuhkan">
-        </div>  
-      </div>
-
-      <div class="form-group">
-        <label for="deadline" class="control-label col-sm-3">Deadline</label>
-        <div class="col-sm-8">
-          <input type="date" name="deadline" id="deadline" class="form-control" placeholder="Masukan Deadline Campaign">
-        </div>  
-      </div>
-
-      <div class="form-group">
-        <label for="foto" class="control-label col-sm-3">Foto</label>
-        <div class="col-sm-8">
-          <input type="file" name="file" required/>
-        </div>  
-      </div>
-
-     
-
-    <div class="form-group">
-      <label for="btn" class="control-label col-sm-3"></label>
-      <div class="col-sm-8">
-        <div class="col-sm-4">
-        <input type="submit" id="galang" name="galang" class="btn btn-dark btn-block" value="Galang Sekarang" />
-        </div>
-        <div class="col-sm-4">
-        <input type="reset" id="reset" class="btn btn-danger btn-block" value="Batal" />
-        </div>
-
-        
-      </div>
-      
+</style>
+    
+</head>
+<body>
+<div id="utama" style="margin-top: 20px;">
+    <div id="judul">
+    Silahkan isi Konfirmasi
     </div>
+
+    <div id="inputan">
+      <form enctype="multipart/form-data" action="konfirmasi.php" method="post">
+        <input type="hidden" name="id_donasi" value="<?php echo $id; ?>">
+        <div style="margin-top: 10px;">
+        <input type="text" name="jumlah" placeholder="Nominal Donasi" class="lg" style="width: 750px;"/>
+        </div>
+        <div style="margin-top: 10px;">
+          <tr>
+          <td>Foto</td><td>:</td>
+          <input name="file" type="file" required/>
+          </tr>
+          </div>
+          <div style="margin-top: 10px;">
+          <input type="submit" name="konfirmasi" value="Konfirmasi Sekarang" class="btn"/>
+          </div>
+        </form>
         
-    </form>
+        </div>
+      </div>
       <div id="contact" class="container">
   <h3 class="text-center">Contact</h3>
 

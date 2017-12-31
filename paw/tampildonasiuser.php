@@ -6,14 +6,14 @@ include "../inc/koneksi.php";
 <!DOCTYPE html>
 <html>
 <head>
-    <title>dashboard user</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	  <title>dashboard user</title>
+	  <meta charset="utf-8">
+	  <meta name="viewport" content="width=device-width, initial-scale=1">
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <style>
       body {
       font: 400 15px/1.8 Lato, sans-serif;
@@ -34,16 +34,16 @@ include "../inc/koneksi.php";
     </style>
 </head>
 <body>
-    <div class="container">
-    <nav class="navbar navbar-inverse">
+  	<div class="container">
+		<nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="index.php">KitaMampu</a>
+      <a class="navbar-brand" href="#">KitaMampu</a>
     </div>
     <ul class="nav navbar-nav">
-      <li><a href="index.php">H O M E</a></li>
-      <li><a href="galang.php">GALANG DANA</a></li>
-      <li><a href="about.php">ABOUT</a></li>
+      <li class="active"><a href="index.php">H O M E</a></li>
+      <li class="active"><a href="galang.php">GALANG DANA</a></li>
+      <li><a href="#">ABOUT</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span> <?php echo $_SESSION['uname']; ?><span class="caret"></span></a>
@@ -64,10 +64,10 @@ include "../inc/koneksi.php";
 </head>
 
 <fieldset>
-  <legend><strong>Tampil Data Donasi</strong></legend>
-  
+	<legend><strong>Tampil Data Donasi</strong></legend>
+	
     <table width="100%" align="center" border="1px" style="border-collapse=collapse;">
-      <tr style="background-color: #336666;">
+    	<tr style="background-color: #336666;">
             <th>Jumlah</th>
             <th>Comment</th>
             <th>Tanggal</th>
@@ -81,22 +81,22 @@ include "../inc/koneksi.php";
         <?php 
         $sql = mysql_query("select a.*,b.no_rek from tb_donasi a join tb_rekening b on a.bank=b.bank where id_user = '$_SESSION[id]'") or die (mysql_error());
         while ($data = mysql_fetch_array($sql)){
-          ?>
-      <tr>
-        <td><?php echo $data['jumlah']; ?></td>
-        <td><?php echo $data['comment']; ?></td>
-        <td><?php echo $data['tanggal']; ?></td>
-        <td><?php echo $data['bank']; ?></td>
+        	?>
+			<tr>
+				<td><?php echo $data['jumlah']; ?></td>
+				<td><?php echo $data['comment']; ?></td>
+				<td><?php echo $data['tanggal']; ?></td>
+				<td><?php echo $data['bank']; ?></td>
         <td><?php echo $data['no_rek']; ?></td>
-        <td><?php echo $data['status']; ?></td>
+				<td><?php echo $data['status']; ?></td>
         <td><?php if ($data['status']=='pending'){ 
         echo '<a href="konfirmasi.php?id='.$data['id_donasi'].'">Konfirmasi</a>';
          } ?></td>
 
-      </tr>
-      <?php
-      }
-    ?>
+			</tr>
+			<?php
+			}
+		?>
     </table>
 </fieldset>
 
@@ -132,7 +132,7 @@ include "../inc/koneksi.php";
 </div>
 <footer class="text-center">
   
-  <p><a href="https://www.w3schools.com" data-toggle="tooltip" title="Visit w3schools">Copyright 2017</a></p> 
+  <p><a href="https://www.w3schools.com" data-toggle="tooltip" title="Visit w3schools">Copyright &copy Tari Miftahul Jannah</a></p> 
 </footer>
       </body>
       </div>

@@ -40,7 +40,8 @@ include "../inc/koneksi.php";
     <div class="container">
     <nav class="navbar navbar-inverse">
   <div class="container-fluid">
-    <div href="indexadmin.php">KitaMampu</a>
+    <div class="navbar-header">
+      <a class="navbar-brand" href="indexadmin.php">KitaMampu</a>
     </div>
     <ul class="nav navbar-nav">
       <li><a href="indexadmin.php">HOME</a></li>
