@@ -50,9 +50,9 @@ if(isset($_POST["register"])){
       <a class="navbar-brand" href="index.php">KitaMampu</a>
     </div>
     <ul class="nav navbar-nav">
-      <li><a href="index.php">HOME</a></li>
+      <li><a href="index.php"><span class="glyphicon glyphicon-home"></span>     HOME</a></li>
       <li><a href="galang.php">GALANG DANA</a></li>
-      <li><a href="donasi.php">DONASI</a></li>
+      <li><a href="donasi.php"><span class="glyphicon glyphicon-gift"></span>     DONASI</a></li>
       
     </ul>
     <ul class="nav navbar-nav navbar-right">

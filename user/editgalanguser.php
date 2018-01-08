@@ -45,7 +45,7 @@ include "../inc/koneksi.php";
       <a class="navbar-brand" href="#">KitaMampu</a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="#">H O M E</a></li>
+      <li class="active"><a href="#"><span class="glyphicon glyphicon-home"></span>     H O M E</a></li>
       <li class="active"><a href="galang.php">GALANG DANA</a></li>
       <li><a href="#">ABOUT</a></li>
     </ul>

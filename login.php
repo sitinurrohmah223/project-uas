@@ -128,9 +128,9 @@ if(isset($_POST['login'])){
       <a class="navbar-brand" href="index.php">Kita Mampu</a>
     </div>
     <ul class="nav navbar-nav">
-      <li><a href="index.php">H O M E</a></li>
+      <li><a href="index.php"><span class="glyphicon glyphicon-home"></span>     H O M E</a></li>
       <li><a href="login.php">GALANG DANA</a></li>
-      <li><a href="login.php">DONASI</a></li>
+      <li><a href="login.php"><span class="glyphicon glyphicon-gift"></span>     DONASI</a></li>
       
     </ul>
     <ul class="nav navbar-nav navbar-right">

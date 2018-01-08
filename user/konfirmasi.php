@@ -74,7 +74,7 @@ if(isset($_POST["konfirmasi"])){
       <a class="navbar-brand" href="index.php">KitaMampu</a>
     </div>
     <ul class="nav navbar-nav">
-      <li><a href="index.php">H O M E</a></li>
+      <li><a href="index.php"><span class="glyphicon glyphicon-home"></span>     H O M E</a></li>
       <li><a href="galang.php">GALANG DANA</a></li>
       <li><a href="about.php">ABOUT</a></li>
     </ul>
