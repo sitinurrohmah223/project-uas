@@ -1,8 +1,6 @@
 language: php
  
 php:
-  - 5.4
-  - 5.5
   - 5.6
 
 env:
@@ -12,7 +10,7 @@ before_script:
   - composer self-update
   - composer install --prefer-source --no-interaction --dev
  
-script: phpunit loginTest.php
+script: phpunit test.php
 
 matrix:
   allow_failures:
