@@ -54,10 +54,11 @@ $id= $_SESSION['id'];
       <ul class="dropdown-menu">
          <li><a href="tampildonasiuser.php">Donasi Saya</a></li>
          <li><a href="tampilgalanguser.php">Galang Dana Saya</a></li>
+         <li><a href="profil.php">Profil</a></li>
          <li><a href="edituser.php">Edit Profil</a></li>
       </ul>
       </li>
-      <li class="utama"><a href="../inc/logout.php"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+      <li class="utama"><a href="../inc/logout.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
     </ul>
   </div>
 </nav>
@@ -65,7 +66,7 @@ $id= $_SESSION['id'];
 
 <body>
 <div class="container-fluid">
-<legend>Edit Data Galang </legend>
+<legend>Edit Data User </legend>
 		
     </div>
   		<form class="form-horizontal" action="" method="POST" role="form">
@@ -80,7 +81,7 @@ $id= $_SESSION['id'];
   		<div class="form-group">
   			<label for="password" class="control-label col-sm-3">Password</label>
   			<div class="col-sm-8">
-  				<input type="password" name="password" class="form-control" value="<?php echo $data['pasword'] ?>">
+  				<input type="password" name="password" class="form-control" value="<?php echo $data['password'] ?>">
   			</div>	
   		</div>
 
@@ -165,7 +166,7 @@ $id= $_SESSION['id'];
              ?>
                    <script type="text/javascript">
              alert("Data Berhasil Diedit");
-             window.location.href="?page=edit";
+             window.location.href="profil.php";
              </script>
                    <?php
            }

@@ -22,7 +22,7 @@ include "../inc/koneksi.php";
       background-color: #fff;
   }
     footer {
-      background-color: #FFB6C1;
+      background-color: #8FBC8F;
       color: #B0C4DE;
       padding: 32px;
   }
@@ -44,13 +44,21 @@ include "../inc/koneksi.php";
       <a class="navbar-brand" href="indexadmin.php">KitaMampu</a>
     </div>
     <ul class="nav navbar-nav">
-      <li><a href="indexadmin.php">HOME</a></li>
-      <li><a href="?page=galangadmin">GALANG DANA</a></li>
-      <li><a href="?page=donasiadmin">DONASI</a></li>
-      <li><a href="?page=userdiadmin">DATA USER</a></li>
+      <li><a href="indexadmin.php"><span class="glyphicon glyphicon-home"></span>      HOME</a></li>
+      <li><a href="?page=galangadmin"><span class="glyphicon glyphicon-th-list"></span>      GALANG DANA</a></li>
+      <li><a href="?page=donasiadmin"><span class="glyphicon glyphicon-th-list"></span>      DONASI</a></li>
+      <li><a href="?page=userdiadmin"><span class="glyphicon glyphicon-th-list"></span>      DATA USER</a></li>
+
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-file"></span>LAPORAN<span class="caret"></span></a>
+      <ul class="dropdown-menu">
+         <li><a href="?page=laporangalang">Laporan Data Galang dana</a></li>
+         <li><a href="?page=laporandonasi">Laporan Data Donasi</a></li>
+         <li><a href="?page=laporanuser">Laporan Data User</a></li>
+      </ul>
+      </li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="../inc/logout.php"><span class="glyphicon glyphicon-log-in"></span> LOGOUT</a></li>
+      <li><a href="../inc/logout.php"><span class="glyphicon glyphicon-log-out"></span> LOGOUT</a></li>
     </ul>
   </div>
 </nav>
@@ -72,11 +80,33 @@ include "../inc/koneksi.php";
     if($action == ""){
       include "data_donasi.php";
     } else if($action == "edit"){
-      include "edit_donasi.php";
+      include "editdonasi.php";
     }
   }else if($page == "userdiadmin"){
     if($action == ""){
     include "data_user.php";
+  }else if ($action == "hapus"){
+    include "hapus_user.php";
+  }
+
+  }else if($page == "laporangalang"){
+    if($action == ""){
+    include "laporan_galang.php";
+  }
+
+  }else if($page == "laporandonasi"){
+    if($action == ""){
+    include "laporan_donasi.php";
+  }
+
+  }else if($page == "laporanuser"){
+    if($action == ""){
+    include "laporan_user.php";
+  }
+
+  }else if($page == "profiladmin"){
+  if($action == ""){
+    include "editadmin.php";
   }
   
   } else if($page == ""){

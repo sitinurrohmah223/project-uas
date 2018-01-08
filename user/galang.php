@@ -84,10 +84,11 @@ if(isset($_POST["galang"])){
       <ul class="dropdown-menu">
         <li><a href="tampildonasiuser.php">Donasi Saya</a></li>
         <li><a href="tampilgalanguser.php">Galang Dana Saya</a></li>
+        <li><a href="profil.php">Profil</a></li>
         <li><a href="edituser.php">Edit Profil</a></li>
       </ul>
       </li>
-      <li class="utama"><a href="../inc/logout.php"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+      <li class="utama"><a href="../inc/logout.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
     </ul>
   </div>
 </nav>

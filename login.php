@@ -19,6 +19,7 @@ if(isset($_POST['login'])){
       if($cek >= 1){
           $_SESSION['user'] = "admin";
           $_SESSION['uname'] = $data['username'];
+          
           header("location: admin/indexadmin.php");
       }else if($cek2 >= 1){
         $_SESSION['user'] = "user";
@@ -161,6 +162,7 @@ if(isset($_POST['login'])){
           <div class="form-bottom">
             <form role="form" action="" method="post" class="login-form">
               <div class="form-group">
+              
                 <label class="sr-only" for="form-username">Username</label>
                 <input type="text" name="user" placeholder="Username ..." class="form-username form-control" id="form-username">  
               </div>

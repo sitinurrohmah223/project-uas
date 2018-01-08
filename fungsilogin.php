@@ -30,4 +30,11 @@ if(isset($_POST['login'])){
         }
 }
 }
+
+
+function jumlah($jumlah,$target){
+  $persen = $jumlah/$target*100;
+return $persen;
+}
+
 ?>

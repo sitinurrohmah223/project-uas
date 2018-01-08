@@ -50,91 +50,69 @@ include "../inc/koneksi.php";
       <ul class="dropdown-menu">
          <li><a href="tampildonasiuser.php">Donasi Saya</a></li>
          <li><a href="tampilgalanguser.php">Galang Dana Saya</a></li>
+         <li><a href="profil.php">Profil</a></li>
          <li><a href="edituser.php">Edit Profil</a></li>  
       </ul>
       </li>
-      <li class="utama"><a href="../inc/logout.php"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+      <li class="utama"><a href="../inc/logout.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
     </ul>
   </div>
 </nav>
 
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Donasi User</title>
+<div class="container-fluid">
+<legend>Data Donasi </legend>
+		<div class="row">
 
-</head>
+		<form action="" method="post" role="search" class="navbar-form navbar-right">
+                <div class="form-group">
+                  <input type="text" name="inputan_pencarian" class="form-control form-top" placeholder="Masukan Id Donasi. .">
+                </div>
+                <button type="submit" name="cari_donasi" value="cari" class="btn btn-default btn-link btn-search-top text-btn-top"><span class="glyphicon glyphicon-search"></span></button>
+        </form>
+		
+	</div>
+    <div class="row" >
+		<div class="col-md-12 col-xs-12">
+			<table class="table table-bordered table-striped table-hover" >
+			<thead style="background-color: #336666;"> 
+					<th style="text-align: center;">Judul</th>
+		            <th style="text-align: center;">Comment</th>
+		            <th style="text-align: center;">Tanggal</th>
+		            <th style="text-align: center;">Bank</th>
+		            <th style="text-align: center;">No Rekening</th>
+		            <th style="text-align: center;">Status</th>
+		            <th style="text-align: center;">Status</th>
+		         
+			</thead>
+			<tbody>
+				
+				<?php 
+		        $sql = mysql_query("select a.*,b.no_rek from tb_donasi a join tb_rekening b on a.bank=b.bank where id_user = '$_SESSION[id]'") or die (mysql_error());
+		        	while ($data = mysql_fetch_array($sql)){
+		          ?>
 
-<fieldset>
-  <legend><strong>Tampil Data Donasi</strong></legend>
-  
-    <table width="100%" align="center" border="1px" style="border-collapse=collapse;">
-      <tr style="background-color: #336666;">
-            <th>Jumlah</th>
-            <th>Comment</th>
-            <th>Tanggal</th>
-            <th>Bank</th>
-            <th>No. Rek</th>
-            <th>Status</th>
-            <th>Status</th>
+				
+					<tr>	
+						<td align="center"><?php echo $data['jumlah']; ?></td>
+						<td align="center"><?php echo $data['comment']; ?></td>
+						<td align="center"><?php echo $data['tanggal']; ?></td>
+						<td align="center"><?php echo $data['bank']; ?></td>
+						<td align="center"><?php echo $data['no_rek']; ?></td>
+						<td align="center"><?php echo $data['status']; ?></td>
+						<td align="center"><?php if ($data['status']=='pending'){ 
+        					echo '<a href="konfirmasi.php?id='.$data['id_donasi'].'">Konfirmasi</a>';
+         					} ?></td>
+						
+					</tr>
+				<?php
+				}
+				?>				
+			</tbody>	
+			</table>
 
-        </tr>
+			
 
-        <?php 
-        $sql = mysql_query("select a.*,b.no_rek from tb_donasi a join tb_rekening b on a.bank=b.bank where id_user = '$_SESSION[id]'") or die (mysql_error());
-        while ($data = mysql_fetch_array($sql)){
-          ?>
-      <tr>
-        <td><?php echo $data['jumlah']; ?></td>
-        <td><?php echo $data['comment']; ?></td>
-        <td><?php echo $data['tanggal']; ?></td>
-        <td><?php echo $data['bank']; ?></td>
-        <td><?php echo $data['no_rek']; ?></td>
-        <td><?php echo $data['status']; ?></td>
-        <td><?php if ($data['status']=='pending'){ 
-        echo '<a href="konfirmasi.php?id='.$data['id_donasi'].'">Konfirmasi</a>';
-         } ?></td>
-
-      </tr>
-      <?php
-      }
-    ?>
-    </table>
-</fieldset>
-
-      <div id="contact" class="container">
-  <h3 class="text-center">Contact</h3>
-
-  <div class="row">
-    <div class="col-md-4">
-      <p>Fan? Drop a note.</p>
-      <p><span class="glyphicon glyphicon-map-marker"></span>Bandung, INA</p>
-      <p><span class="glyphicon glyphicon-phone"></span>Phone: 021 912 315</p>
-      <p><span class="glyphicon glyphicon-envelope"></span>Email: kitamampu@gmail.com</p>
-    </div>
-    <div class="col-md-8">
-      <div class="row">
-        <div class="col-sm-6 form-group">
-          <input class="form-control" id="name" name="name" placeholder="Name" type="text" required>
-        </div>
-        <div class="col-sm-6 form-group">
-          <input class="form-control" id="email" name="email" placeholder="Email" type="email" required>
-        </div>
+		</div>
       </div>
-      <textarea class="form-control" id="comments" name="comments" placeholder="Comment" rows="5"></textarea>
-      <br>
-      <div class="row">
-        <div class="col-md-12 form-group">
-          <button class="btn btn-info" type="submit">Send</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  
+    </div> 
 </div>
-<footer class="text-center">
-  
-  <p><a href="https://www.w3schools.com" data-toggle="tooltip" title="Visit w3schools">Copyright 2017</a></p> 
-</footer>
-      </body>
-      </div>
-      </body>
-      </html>

@@ -2,6 +2,10 @@
 include "fpdf.php";
 include "../inc/koneksi.php";
 
+//
+$tgl_awal = @$_GET['tgl_awal'];
+$tgl_akhir = @$_GET['tgl_akhir'];
+
 $pdf = new FPDF();
 $pdf->AddPage();
 
@@ -27,7 +31,7 @@ $pdf->Cell(30,6,'Target',1,0,'C');
 $pdf->Cell(20,6,'Deadline',1,0,'C');
 $pdf->Ln(2);
 $no = 0;
-$sql = mysql_query("select * from tb_galang order by deadline asc");
+$sql = mysql_query("select * from tb_galang where deadline between '$tgl_awal' and '$tgl_akhir'");
 while ($data = mysql_fetch_array($sql)){
 	$no++;
 	$pdf->Ln(4);

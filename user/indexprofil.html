@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Profil User</title>
+
+	<!--Bootstrap -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href=" /user/style.css">
+
+	<script src="https://css.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js"></script>
+
+	<script src="https://css.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+
+<style>
+      body {
+      font: 400 15px/1.8 Lato, sans-serif;
+      color: #777;
+  }
+    footer {
+      background-color: #FFB6C1;
+      color: #B0C4DE;
+      padding: 32px;
+  }
+  footer a {
+      color: #800000;
+  }
+  footer a:hover {
+      color: #777;
+      text-decoration: none;
+  }  
+    </style>
+</head>
+<body>
+    <div class="container">
+    <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="index.php">KitaMampu</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a href="index.php">H O M E</a></li>
+      <li><a href="galang.php">GALANG DANA</a></li>
+      <li><a href="indexprofil.html">ABOUT</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="indexprofil.php"><span class="glyphicon glyphicon-user"></span> <?php echo $_SESSION['uname']; ?><span class="caret"></span></a>
+      <ul class="dropdown-menu">
+         <li><a href="tampildonasiuser.php">Donasi Saya</a></li>
+         <li><a href="tampilgalanguser.php">Galang Dana Saya</a></li>
+         <li><a href="edituser.php">Edit Profil</a></li>
+      </ul>
+      </li>
+      <li class="utama"><a href="../inc/logout.php"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+    </ul>
+  </div>
+</nav>
+
+	<div class="container">
+		<div class="row profile">
+		<div class="col-md-3">
+			<div class="profil-sidebar">
+			<div class="profile-user-pic">
+			<img src="http://guarddome.com/assets/images/profile-img.jpg" alt="" class="imgr-responsive img-circle">
+			</div>
+			<div class="profile-user-title">
+			<div class="profile-user-name">
+			Jithin Doe
+			</div>
+			<div class="profile-user-job">
+			Developer
+			</div>
+			</div>
+			<div class="profile-user-buttons">
+			<button class="btn btn-success btn-sm">Follow</button>
+			<button class="btn btn-danger btn-sm">Message</button>
+			</div>
+			<div class="profile-user-menu">
+			<ul class="nav">
+			<li class="active"><a href="tampildonasiuser.php"><i class="glyphicon glyphicon-home"></i>Donasi Saya</a></li>
+			<li class=""><a href="tampilgalanguser.php"><i class="glyphicon glyphicon"></i>Galang Dana Saya</a></li>
+			<li class=""><a href=""><i class="glyphicon glyphicon"></i>Profil</a></li>
+			<li class=""><a href="edituser.php"><i class="glyphicon glyphicon"></i>Edit Profil</a></li>
+			</ul>
+			</div>
+			</div>
+			</div>
+
+			<div class="col-md-9"></div>
+			<p>lorem ipsum</p>
+			</div>
+			</div>
+			</div>
+
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+			</body>
+			</html>

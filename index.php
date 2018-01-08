@@ -15,7 +15,7 @@ include "inc/koneksi.php";
 <!DOCTYPE html>
 <html>
 <head>
-    <title>PAW</title>
+    <title>home</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -31,9 +31,9 @@ include "inc/koneksi.php";
       color: #777;
   }
     footer {
-      background-color: #FFB6C1;
+      background-color: #8FBC8F;
       color: #B0C4DE;
-      padding: 32px;
+      padding: 10px;
   }
   footer a {
       color: #800000;
@@ -100,10 +100,10 @@ include "inc/koneksi.php";
     <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="index.php">Kita Mampu</a>
+      <a class="navbar-brand" href="#">Kita Mampu</a>
     </div>
     <ul class="nav navbar-nav">
-      <li><a href="index.php"><span class="glyphicon glyphicon-home"></span>HOME</a></li>
+      <li><a href="index.php">H O M E</a></li>
       <li><a href="login.php">GALANG DANA</a></li>
       <li><a href="login.php">DONASI</a></li>
       
@@ -143,36 +143,68 @@ include "inc/koneksi.php";
         
       </div> 
     </div>
-
-   <div class="item">
-        <img src="images/banner4.jpg" alt="Chicago">
-        <div class="carousel-caption">
-      
-      </div> 
-    </div>
-
   </div>
 </div>  
      <div class="row" style="margin-top: 20px;">
           <?php 
-            $sql = mysql_query("select * from tb_galang");
+          $per_page = 3;
+ 
+$page_query = mysql_query("SELECT COUNT(*) FROM tb_galang");
+$pages = ceil(mysql_result($page_query, 0) / $per_page);
+ 
+$page = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
+$start = ($page - 1) * $per_page;
+            $sql = mysql_query("select * from tb_galang LIMIT $start, $per_page");
             while($data = mysql_fetch_array($sql)){
+          $id_galang = $data['id_galang'];
+            $jumlah = mysql_fetch_array(mysql_query("select sum(jumlah) as jml from tb_donasi where id_galang='$id_galang'"));
+            $gl = mysql_fetch_array(mysql_query("select a.username from tb_user a join tb_galang b on a.id_user=b.id_user where id_galang=$id_galang"));
+
+            $persen = $jumlah['jml']/$data['target']*100;
+            $awal = date_create();
+            $akhir = date_create($data['deadline']);
+            $diff = date_diff($awal, $akhir);
           ?>
-          <div class="col-sm-4">
+ <div class="col-sm-4">
               <div class="panel panel-default">
               <div class="panel-heading" style="padding:0px">
-                  <img width="360px" height="250px" src="images/<?php echo $data['foto']; ?>">
-                  <br>
-                  <br>
+                  <img width="358px" height="250px" src="images/<?php echo $data['foto']; ?>">
+              </div>
+              <div class="panel-body"> 
                   <b><font size="3px" style="margin-top:20px"><?php echo $data['judul']; ?></font></b>
-                  <br>
+                 <p><?php echo $gl['username'];?>          &nbsp;<span class="glyphicon glyphicon-ok-circle"></span></p>
+                  <p><?php echo $data['deskripsi'] ?></p>
+                  <div class="row">
+                    <div class="col-sm-4">
+                      <h5>Rp. <?php echo number_format($jumlah['jml']);?></h5>
+                      <p>Terkumpul</p>
+                    </div>
+                    <div class="col-sm-4">
+                      <h5><?php echo number_format($persen,2).'%';?></h5>
+                      <p>Tercapai</p>
+                    </div>
+                    <div class="col-sm-4">
+                      <h5><?php echo $diff->d ?></h5>
+                      <p>Hari lagi</p>
+                    </div>
                   </div>
-              <div class="panel-body"><?php echo $data['deskripsi'] ?></div>
-              <div class="panel-footer"><button class="btn btn-info">Donasi</button></div>
+              </div>
+              <div class="panel-footer"><a href="login.php"><button class="btn btn-info" >Donasi</button></a></div>
             </div>
+            </div>
+              <?php } ?>
         </div>
-        <?php } ?>
+          <?php  
+          if($pages >= 1 && $page <= $pages){
+            for($x=1; $x<=$pages; $x++){?>
+              <ul class="pagination">
+               <li class="page-item"><?php echo ($x == $page) ? '<a href="?page='.$x.'">'.$x.'</a> ' : ' <a href="?page='.$x.'">'.$x.' </a>'?></li>
+  </ul>
+        
+    <?php }
+}?>
     </div>
+    <!--coba-->
 
 <!-- Container (Contact Section) -->
 <div id="contact" class="container">

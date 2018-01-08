@@ -75,7 +75,7 @@
 						<td align="center"><?php echo $data['alamat']; ?></td>
 						
 						<td align="center">
-							<a onclick="return confirm('Yakin ingin menghapus data ?')" href="?page=userdiadmin&action=hapus&kode=<?php echo $data['id_user']; ?>"><a class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span></a>
+							<a onclick="return confirm('Yakin ingin menghapus data ?')" href="?page=userdiadmin&action=hapus&iduser=<?php echo $data['id_user']; ?>" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span></a>
 							
 						</td>
 					</tr>

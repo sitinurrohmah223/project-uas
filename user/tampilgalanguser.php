@@ -50,10 +50,11 @@ include "../inc/koneksi.php";
       <ul class="dropdown-menu">
          <li><a href="tampildonasiuser.php">Donasi Saya</a></li>
          <li><a href="tampilgalanguser.php">Galang Dana Saya</a></li>
+         <li><a href="profil.php">Profil</a></li>
          <li><a href="edituser.php">Edit Profil</a></li>
       </ul>
       </li>
-      <li class="utama"><a href="../inc/logout.php"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+      <li class="utama"><a href="../inc/logout.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
     </ul>
   </div>
 </nav>
@@ -74,8 +75,9 @@ include "../inc/koneksi.php";
     <div class="row" >
     <div class="col-md-12 col-xs-12">
       <table class="table table-bordered table-striped table-hover" >
-      <thead style="background-color: #336666;"> 
-          <th style="text-align: center;">Judul</th>
+      <thead style="background-color: #336666;">
+                <th style="text-align: center;">Id Galang</th> 
+                <th style="text-align: center;">Judul</th>
                 <th style="text-align: center;">Kategori</th>
                 <th style="text-align: center;">Lokasi</th>
                 <th style="text-align: center;">Target</th>
@@ -124,7 +126,7 @@ include "../inc/koneksi.php";
         ?>
         
           <tr>
-            
+             <td align="center"><?php echo $data['id_galang']; ?></td>
             <td align="center"><?php echo $data['judul']; ?></td>
             <td align="center"><?php echo $data['kategori']; ?></td>
             <td align="center"><?php echo $data['lokasi']; ?></td>
@@ -133,7 +135,7 @@ include "../inc/koneksi.php";
           
             
             <td align="center">
-              <a href="?page=galangadmin&action=edit&judul=<?php echo $data['judul']; ?>"  class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-pencil"></span></a>
+              <a href= "editgalanguser.php?id_galang=<?php echo $data['id_galang']; ?>"  class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-pencil"></span></a>
             </td>
           </tr>
         <?php
